@@ -38,12 +38,38 @@ temp <- gsub(" ", ".",temp)
 temp
 length((ifw$city))
 length((temp))
-
-# Creates a counter var in ifw
+ifw$city <- temp
+rm(temp)
+temp <- toupper(citypop$city)
+temp <- gsub(" ", ".",temp)
+temp
+length((citypop$city))
+length((temp))
+citypop$city <- temp
+rm(temp)
+0/00
 #
-# How on earth do we find the number of each species
-# harvested in each city, and add that to the counter
-ifw$count <- 1
+# Ask about this result
+ag.city.species <- aggregate(ifw$count, by=list(ifw$Species), FUN = sum)
+ag.city.species <- aggregate(ifw$count, by=list(ifw$city), FUN = sum)
+print(ag.city.species)
 
+# Finds the dimension of ag.city.species. Looks at the first five rows after.
+dim(ag.city.species)
+head(ag.city.species)
 
-# Finds the sum of count using aggregate()
+# Finds the total value of cities that appear in ifw that do not appear in 
+# citypop and vice versa.
+length(ifw$city)
+length(citypop$city)
+interaction(ifw$city,citypop$city)
+length(setdiff(ifw$city,citypop$city))
+length(setdiff(citypop$city,ifw$city))
+
+# Merges ifw and citypop into pop.species.mer (only with matching vales)
+# Checks the dimension using view() on completion
+pop.species.mer = merge(ifw, citypop, all.x=FALSE, all.y = FALSE)
+View(pop.species.mer)
+
+# Plots population vs total hunt harvest for DEER, BEAR, MOOSE, and TURKF 
+#plot(pop.species.mer$pop,

@@ -42,8 +42,6 @@ ggplot(mtcars,aes(x=mpg,y=disp,color=cyl,shape=as.factor(cyl))) +
   geom_point()
 
 # Uses the color aesthetic with a numeric variable.
-ggplot(mtcars, aes(x = mpg, y = disp, colour = mpg)) +
-  geom_point()
 ggplot(mtcars, aes(x = mpg, y = disp, colour = cyl)) +
   geom_point()
 
